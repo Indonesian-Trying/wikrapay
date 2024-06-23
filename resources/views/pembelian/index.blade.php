@@ -27,7 +27,7 @@
                         <th>Supplier</th>
                         <th>Total Item</th>
                         <th>Total Harga</th>
-                        <th>Diskon</th>
+                        {{-- <th>Diskon</th> --}}
                         <th>Total Bayar</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
@@ -60,7 +60,7 @@
                 {data: 'supplier'},
                 {data: 'total_item'},
                 {data: 'total_harga'},
-                {data: 'diskon'},
+                // {data: 'diskon'},
                 {data: 'bayar'},
                 {data: 'aksi', searchable: false, sortable: false},
             ]

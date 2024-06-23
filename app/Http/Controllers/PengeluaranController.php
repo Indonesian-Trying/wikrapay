@@ -18,9 +18,11 @@ class PengeluaranController extends Controller
 
         return datatables()
             ->of($pengeluaran)
-            ->addIndexColumn()
             ->addColumn('created_at', function ($pengeluaran) {
                 return tanggal_indonesia($pengeluaran->created_at, false);
+            })
+            ->addColumn('nama', function ($pengeluaran) {
+                return $pengeluaran->nama;
             })
             ->addColumn('nominal', function ($pengeluaran) {
                 return format_uang($pengeluaran->nominal);
@@ -28,8 +30,12 @@ class PengeluaranController extends Controller
             ->addColumn('aksi', function ($pengeluaran) {
                 return '
                 <div class="btn-group">
-                    <button type="button" onclick="editForm(`'. route('pengeluaran.update', $pengeluaran->id_pengeluaran) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
-                    <button type="button" onclick="deleteData(`'. route('pengeluaran.destroy', $pengeluaran->id_pengeluaran) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                    <button type="button" onclick="editForm(`' .
+                    route('pengeluaran.update', $pengeluaran->id_pengeluaran) .
+                    '`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
+                    <button type="button" onclick="deleteData(`' .
+                    route('pengeluaran.destroy', $pengeluaran->id_pengeluaran) .
+                    '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
                 </div>
                 ';
             })

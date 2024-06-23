@@ -21,6 +21,7 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Tanggal</th>
+                        <th>Nama</th>
                         <th>Deskripsi</th>
                         <th>Nominal</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
@@ -50,6 +51,7 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'created_at'},
+                {data: 'nama'},
                 {data: 'deskripsi'},
                 {data: 'nominal'},
                 {data: 'aksi', searchable: false, sortable: false},
@@ -92,6 +94,7 @@
 
         $.get(url)
             .done((response) => {
+                $('#modal-form [name=nama]').val(response.nama);
                 $('#modal-form [name=deskripsi]').val(response.deskripsi);
                 $('#modal-form [name=nominal]').val(response.nominal);
             })

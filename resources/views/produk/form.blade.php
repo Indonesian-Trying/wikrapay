@@ -31,9 +31,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="merk" class="col-lg-2 col-lg-offset-1 control-label">Merk</label>
+                        <label for="supplier" class="col-lg-2 col-lg-offset-1 control-label">Supplier</label>
                         <div class="col-lg-6">
-                            <input type="text" name="merk" id="merk" class="form-control">
+                            <select name="supplier" id="supplier" class="form-control" required>
+                                <option value="">Pilih Supplier</option>
+                                @foreach ($supplier as $key => $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -51,13 +56,13 @@
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="diskon" class="col-lg-2 col-lg-offset-1 control-label">Diskon</label>
                         <div class="col-lg-6">
                             <input type="number" name="diskon" id="diskon" class="form-control" value="0">
                             <span class="help-block with-errors"></span>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="stok" class="col-lg-2 col-lg-offset-1 control-label">Stok</label>
                         <div class="col-lg-6">

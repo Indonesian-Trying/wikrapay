@@ -84,7 +84,7 @@
                             <input type="hidden" name="total" id="total">
                             <input type="hidden" name="total_item" id="total_item">
                             <input type="hidden" name="bayar" id="bayar">
-                            <input type="hidden" name="id_member" id="id_member" value="{{ $memberSelected->id_member }}">
+                            {{-- <input type="hidden" name="id_member" id="id_member" value="{{ $memberSelected->id_member }}"> --}}
 
                             <div class="form-group row">
                                 <label for="totalrp" class="col-lg-2 control-label">Total</label>
@@ -92,7 +92,7 @@
                                     <input type="text" id="totalrp" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="kode_member" class="col-lg-2 control-label">Member</label>
                                 <div class="col-lg-8">
                                     <div class="input-group">
@@ -102,7 +102,7 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group row">
                                 <label for="diskon" class="col-lg-2 control-label">Diskon</label>
                                 <div class="col-lg-8">
@@ -142,7 +142,7 @@
 </div>
 
 @includeIf('penjualan_detail.produk')
-@includeIf('penjualan_detail.member')
+{{-- @includeIf('penjualan_detail.member') --}}
 @endsection
 
 @push('scripts')

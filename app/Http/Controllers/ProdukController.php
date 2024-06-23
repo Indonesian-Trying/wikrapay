@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Supplier;
 use PDF;
 
 class ProdukController extends Controller
@@ -17,14 +18,16 @@ class ProdukController extends Controller
     public function index()
     {
         $kategori = Kategori::all()->pluck('nama_kategori', 'id_kategori');
+        $supplier = Supplier::all()->pluck('nama','id_supplier');
 
-        return view('produk.index', compact('kategori'));
+        return view('produk.index', compact('kategori','supplier'));
     }
 
     public function data()
     {
         $produk = Produk::leftJoin('kategori', 'kategori.id_kategori', 'produk.id_kategori')
             ->select('produk.*', 'nama_kategori')
+            // ->select('produk.*', 'nama')
             // ->orderBy('kode_produk', 'asc')
             ->get();
 
@@ -39,6 +42,9 @@ class ProdukController extends Controller
             ->addColumn('kode_produk', function ($produk) {
                 return '<span class="label label-success">'. $produk->kode_produk .'</span>';
             })
+            ->addColumn('supplier', function ($produk) {
+                return $produk->supplier;
+            })
             ->addColumn('harga_beli', function ($produk) {
                 return format_uang($produk->harga_beli);
             })
@@ -47,6 +53,9 @@ class ProdukController extends Controller
             })
             ->addColumn('stok', function ($produk) {
                 return format_uang($produk->stok);
+            })
+            ->addColumn('created_at', function ($produk) {
+                return ($produk->created_at);
             })
             ->addColumn('aksi', function ($produk) {
                 return '
@@ -83,7 +92,7 @@ class ProdukController extends Controller
 
         $produk = Produk::create($request->all());
 
-        return response()->json('Data berhasil disimpan', 200);
+                    return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
